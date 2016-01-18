@@ -129,7 +129,7 @@
 							this.dom.blocks[elIdx].className += " is-loaded";
 						}
 					});
-				}, 150 * idx);
+				}, (this.config.delay || 150) * idx);
 			});
     }
 
@@ -173,6 +173,7 @@
       {
         rows: 4,
         columns: 4,
+				delay: 200,
       }
     );
 

@@ -147,7 +147,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   _this4.dom.blocks[elIdx].className += " is-loaded";
                 }
               });
-            }, 150 * idx);
+            }, (_this4.config.delay || 150) * idx);
           });
         }
       }, {
@@ -185,7 +185,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       var mosaic2 = new Mosaic(document.getElementById("mosaic-2"), {
         rows: 4,
-        columns: 4
+        columns: 4,
+        delay: 200
       });
 
       var render = function render() {
