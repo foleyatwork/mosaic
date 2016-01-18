@@ -179,7 +179,6 @@
       {
         rows: 3,
         columns: 4,
-				delay: 200,
       }
     );
 
