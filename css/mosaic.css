@@ -62,6 +62,10 @@ h2 {
   background-position: center center; }
   .colorful .mosaic-block.is-loaded {
     opacity: 0.99; }
+    .colorful .mosaic-block.is-loaded:nth-of-type(1), .colorful .mosaic-block.is-loaded:nth-of-type(3), .colorful .mosaic-block.is-loaded:nth-of-type(5), .colorful .mosaic-block.is-loaded:nth-of-type(8), .colorful .mosaic-block.is-loaded:nth-of-type(10), .colorful .mosaic-block.is-loaded:nth-of-type(11) {
+      opacity: 0.6; }
+      .colorful .mosaic-block.is-loaded:nth-of-type(1):hover, .colorful .mosaic-block.is-loaded:nth-of-type(3):hover, .colorful .mosaic-block.is-loaded:nth-of-type(5):hover, .colorful .mosaic-block.is-loaded:nth-of-type(8):hover, .colorful .mosaic-block.is-loaded:nth-of-type(10):hover, .colorful .mosaic-block.is-loaded:nth-of-type(11):hover {
+        opacity: 1; }
   .colorful .mosaic-block:nth-of-type(1) {
     background-image: url("https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=eb4214b1bb04674628992a705ad3dc30"); }
   .colorful .mosaic-block:nth-of-type(3) {
