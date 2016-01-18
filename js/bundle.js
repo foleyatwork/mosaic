@@ -26,8 +26,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this._buildTransitionMap();
 
           this._renderBlocks(function () {
-            _this.dom.blocks = document.querySelectorAll("." + selector);
-            _this._setLayoutValues(_this._triggerEntryTransition.bind(_this));
+            _this.dom.blocks = _this.el.querySelectorAll("." + selector);
+            _this._setLayoutValues(function () {});
           });
         }
       }, {
@@ -143,23 +143,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this._transitionMap.forEach(function (group, idx) {
             setTimeout(function () {
               group.forEach(function (elIdx) {
-                _this4.dom.blocks[elIdx].className += " is-loaded";
+                if (_this4.dom.blocks[elIdx]) {
+                  _this4.dom.blocks[elIdx].className += " is-loaded";
+                }
               });
-            }, 100 * idx);
+            }, 150 * idx);
           });
-          // for (let _idx = 0; _idx < this._transitionMap; _idx++) {
-          //   ((idx) => {
-          //
-          //     setTimeout(() => {
-          //       let nextIdx;
-          //       this.dom.blocks[idx].className += " is-loaded";
-          //
-          //       if (idx < 2) {
-          //         return;
-          //       }
-          //     }, 100 * idx);
-          //   })(_idx);
-          // }
+        }
+      }, {
+        key: "show",
+        value: function show() {
+          this._triggerEntryTransition();
+        }
+      }, {
+        key: "isInViewport",
+        value: function isInViewport() {
+          var el = this.el;
+          var top = el.offsetTop;
+          var left = el.offsetLeft;
+          var width = el.offsetWidth;
+          var height = el.offsetHeight;
+
+          while (el.offsetParent) {
+            el = el.offsetParent;
+            top += el.offsetTop;
+            left += el.offsetLeft;
+          }
+
+          return top < window.pageYOffset + window.innerHeight && left < window.pageXOffset + window.innerWidth && top + height > window.pageYOffset && left + width > window.pageXOffset;
         }
       }]);
 
@@ -167,10 +178,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     var initMosaic = function initMosaic() {
-      new Mosaic(document.getElementById("mosaic-1"), {
+      var mosaic1 = new Mosaic(document.getElementById("mosaic-1"), {
         rows: 4,
         columns: 4
       });
+
+      var mosaic2 = new Mosaic(document.getElementById("mosaic-2"), {
+        rows: 4,
+        columns: 4
+      });
+
+      var render = function render() {
+        if (mosaic1.isInViewport()) {
+          mosaic1.show();
+        }
+
+        if (mosaic2.isInViewport()) {
+          mosaic2.show();
+        }
+      };
+
+      render();
+      addEventListener("scroll", render);
     };
 
     if (document.readyState === "complete" || document.readyState === "interactive") {

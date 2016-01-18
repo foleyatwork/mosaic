@@ -13,8 +13,8 @@
       this._buildTransitionMap();
 
       this._renderBlocks(() => {
-        this.dom.blocks = document.querySelectorAll(`.${selector}`);
-        this._setLayoutValues(this._triggerEntryTransition.bind(this));
+        this.dom.blocks = this.el.querySelectorAll(`.${selector}`);
+        this._setLayoutValues(() => {});
       });
     }
 
@@ -122,34 +122,69 @@
 			this._transitionMap.forEach((group, idx) => {
 				setTimeout(() => {
 					group.forEach((elIdx) => {
-						this.dom.blocks[elIdx].className += " is-loaded";
+						if (this.dom.blocks[elIdx]) {
+							this.dom.blocks[elIdx].className += " is-loaded";
+						}
 					});
-				}, 100 * idx);
+				}, 150 * idx);
 			});
-      // for (let _idx = 0; _idx < this._transitionMap; _idx++) {
-      //   ((idx) => {
-			//
-      //     setTimeout(() => {
-      //       let nextIdx;
-      //       this.dom.blocks[idx].className += " is-loaded";
-			//
-      //       if (idx < 2) {
-      //         return;
-      //       }
-      //     }, 100 * idx);
-      //   })(_idx);
-      // }
     }
+
+		show() {
+			this._triggerEntryTransition();
+		}
+
+		isInViewport() {
+			let el = this.el;
+			let top = el.offsetTop;
+		  let left = el.offsetLeft;
+		  let width = el.offsetWidth;
+		  let height = el.offsetHeight;
+
+		  while(el.offsetParent) {
+		    el = el.offsetParent;
+		    top += el.offsetTop;
+		    left += el.offsetLeft;
+		  }
+
+		  return (
+		    top < (window.pageYOffset + window.innerHeight) &&
+		    left < (window.pageXOffset + window.innerWidth) &&
+		    (top + height) > window.pageYOffset &&
+		    (left + width) > window.pageXOffset
+		  );
+		}
   }
 
   const initMosaic = () => {
-    new Mosaic(
+    const mosaic1 = new Mosaic(
       document.getElementById("mosaic-1"),
       {
         rows: 4,
         columns: 4,
       }
     );
+
+		const mosaic2 = new Mosaic(
+      document.getElementById("mosaic-2"),
+      {
+        rows: 4,
+        columns: 4,
+      }
+    );
+
+		const render = () => {
+			if (mosaic1.isInViewport()) {
+				mosaic1.show();
+			}
+
+			if (mosaic2.isInViewport()) {
+				mosaic2.show();
+			}
+		};
+
+		render();
+		addEventListener("scroll", render);
   };
 
   if (
