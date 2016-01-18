@@ -33,7 +33,7 @@ h1 {
   transition: opacity 700ms ease, transform 1000ms ease;
 
   &.is-loaded {
-    opacity: 1;
+    opacity: 0.99;
   }
 
   &:nth-of-type(2n) {
