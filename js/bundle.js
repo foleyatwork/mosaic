@@ -185,7 +185,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var initMosaic = function initMosaic() {
       var mosaic1 = new Mosaic(document.getElementById("mosaic-1"), {
-        rows: 4,
+        rows: 3,
         columns: 4
       });
 

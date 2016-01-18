@@ -169,7 +169,7 @@
     const mosaic1 = new Mosaic(
       document.getElementById("mosaic-1"),
       {
-        rows: 4,
+        rows: 3,
         columns: 4,
       }
     );

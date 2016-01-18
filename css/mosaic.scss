@@ -19,8 +19,8 @@ h1, h2 {
 
 .mosaic {
   height: 0;
-  margin: 0 auto 150px;
-	padding-bottom: 56.25%;
+  margin: 0 auto;
+	padding-bottom: 75%;
   width: 100%;
 
   &:after {
@@ -34,10 +34,6 @@ h1, h2 {
 		-webkit-transform: translateZ(0);
 						transform: translateZ(0);
   }
-}
-
-.shades-of-grey {
-	padding-bottom: 100%;
 }
 
 .shades-of-grey .mosaic-block {
