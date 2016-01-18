@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto; }
 
 h1, h2 {
@@ -51,19 +51,15 @@ h1, h2 {
     opacity: 0.99; }
   .colorful .mosaic-block:nth-of-type(1) {
     background-image: url("https://images.unsplash.com/photo-1450101215322-bf5cd27642fc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=eb4214b1bb04674628992a705ad3dc30"); }
-  .colorful .mosaic-block:nth-of-type(4) {
-    background-color: whitesmoke; }
   .colorful .mosaic-block:nth-of-type(3) {
     background-image: url("https://images.unsplash.com/photo-1443890923422-7819ed4101c0?crop=entropy&dpr=2&fit=crop&fm=jpg&h=1300&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1350"); }
+  .colorful .mosaic-block:nth-of-type(5) {
+    background-image: url("https://images.unsplash.com/photo-1437376576540-236661ddb41f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=63a9ff11faa1b85fa838f3df68ebca2e"); }
   .colorful .mosaic-block:nth-of-type(8) {
     background-image: url("https://images.unsplash.com/photo-1436407886995-41f8f5ee43ad?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=6f2e9aea816890a2eff88bc302840266"); }
   .colorful .mosaic-block:nth-of-type(10) {
     background-image: url("https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=e18a8e9c0b879cfb054cd6ee89ecf803"); }
   .colorful .mosaic-block:nth-of-type(11) {
     background-image: url("https://images.unsplash.com/photo-1448546120959-a4b0e3dd910d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=5f1a28cca141c898785cacd29df9a86e"); }
-  .colorful .mosaic-block:nth-of-type(13) {
-    background-image: url("https://images.unsplash.com/photo-1437376576540-236661ddb41f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=63a9ff11faa1b85fa838f3df68ebca2e"); }
-  .colorful .mosaic-block:nth-of-type(16) {
-    background-image: url("https://images.unsplash.com/photo-1445285303476-2f3b16d67b7a?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=d7e6c147c8e73146eeca881bcba3d548"); }
 
 /*# sourceMappingURL=mosaic.css.map */

@@ -177,7 +177,7 @@
 		const mosaic2 = new Mosaic(
       document.getElementById("mosaic-2"),
       {
-        rows: 4,
+        rows: 3,
         columns: 4,
 				delay: 200,
       }

@@ -190,7 +190,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       });
 
       var mosaic2 = new Mosaic(document.getElementById("mosaic-2"), {
-        rows: 4,
+        rows: 3,
         columns: 4,
         delay: 200
       });
