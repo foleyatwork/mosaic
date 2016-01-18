@@ -16,6 +16,11 @@
         this.dom.blocks = this.el.querySelectorAll(`.${selector}`);
         this._setLayoutValues(() => {});
       });
+
+			console.log("test");
+			window.addEventListener("resize", () => {
+				this._setLayoutValues(() => {});
+			});
     }
 
     _buildTransitionMap() {
@@ -94,6 +99,7 @@
     }
 
     _setLayoutValues(done) {
+			console.log("test");
       const height = this.el.clientHeight / this.config.rows;
       const width = this.el.clientWidth / this.config.columns;
 

@@ -29,6 +29,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this.dom.blocks = _this.el.querySelectorAll("." + selector);
             _this._setLayoutValues(function () {});
           });
+
+          console.log("test");
+          window.addEventListener("resize", function () {
+            _this._setLayoutValues(function () {});
+          });
         }
       }, {
         key: "_buildTransitionMap",
@@ -111,6 +116,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function _setLayoutValues(done) {
           var _this3 = this;
 
+          console.log("test");
           var height = this.el.clientHeight / this.config.rows;
           var width = this.el.clientWidth / this.config.columns;
 
