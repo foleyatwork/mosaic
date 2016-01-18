@@ -17,7 +17,6 @@
         this._setLayoutValues(() => {});
       });
 
-			console.log("test");
 			window.addEventListener("resize", () => {
 				this._setLayoutValues(() => {});
 			});
@@ -78,13 +77,16 @@
 
     _renderBlocks(done) {
       const max = this.config.columns * this.config.rows;
+			const inner = document.createElement("div");
+			inner.className = "mosaic-inner";
 
       for (let _idx = 0; _idx < max; _idx++) {
         ((idx) => {
           const block = this._createBlockEl(idx);
-          this.el.appendChild(block);
+          inner.appendChild(block);
 
           if (idx + 1 === max) {
+						this.el.appendChild(inner);
             done();
           }
         })(_idx);
@@ -99,14 +101,13 @@
     }
 
     _setLayoutValues(done) {
-			console.log("test");
-      const height = this.el.clientHeight / this.config.rows;
-      const width = this.el.clientWidth / this.config.columns;
+      const height = 100 / this.config.rows;
+      const width = 100 / this.config.columns;
 
       for (let _idx = 0; _idx < this.dom.blocks.length; _idx++) {
         ((idx) => {
-          this.dom.blocks[idx].style.height = `${height}px`;
-          this.dom.blocks[idx].style.width = `${width}px`;
+          this.dom.blocks[idx].style.height = `${height}%`;
+          this.dom.blocks[idx].style.width = `${width}%`;
 
           if (idx === this.dom.blocks.length - 1) {
             done();

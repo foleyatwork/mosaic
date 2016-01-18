@@ -38,13 +38,16 @@ h2 {
   height: 0;
   margin: 0 auto;
 	padding-bottom: 75%;
+	position: relative;
   width: 100%;
 
-  &:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
+	&-inner {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
 
   &-block {
     float: left;

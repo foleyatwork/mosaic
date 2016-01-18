@@ -30,7 +30,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this._setLayoutValues(function () {});
           });
 
-          console.log("test");
           window.addEventListener("resize", function () {
             _this._setLayoutValues(function () {});
           });
@@ -91,13 +90,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this2 = this;
 
           var max = this.config.columns * this.config.rows;
+          var inner = document.createElement("div");
+          inner.className = "mosaic-inner";
 
           for (var _idx = 0; _idx < max; _idx++) {
             (function (idx) {
               var block = _this2._createBlockEl(idx);
-              _this2.el.appendChild(block);
+              inner.appendChild(block);
 
               if (idx + 1 === max) {
+                _this2.el.appendChild(inner);
                 done();
               }
             })(_idx);
@@ -116,14 +118,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function _setLayoutValues(done) {
           var _this3 = this;
 
-          console.log("test");
-          var height = this.el.clientHeight / this.config.rows;
-          var width = this.el.clientWidth / this.config.columns;
+          var height = 100 / this.config.rows;
+          var width = 100 / this.config.columns;
 
           for (var _idx = 0; _idx < this.dom.blocks.length; _idx++) {
             (function (idx) {
-              _this3.dom.blocks[idx].style.height = height + "px";
-              _this3.dom.blocks[idx].style.width = width + "px";
+              _this3.dom.blocks[idx].style.height = height + "%";
+              _this3.dom.blocks[idx].style.width = width + "%";
 
               if (idx === _this3.dom.blocks.length - 1) {
                 done();
