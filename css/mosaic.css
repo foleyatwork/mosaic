@@ -45,17 +45,17 @@ h2 {
     transform: translateZ(0); }
 
 .shades-of-grey .mosaic-block {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
   transition: opacity 700ms ease, transform 1000ms ease; }
   .shades-of-grey .mosaic-block.is-loaded {
     opacity: 0.99; }
   .shades-of-grey .mosaic-block:nth-of-type(2n) {
-    background-color: rgba(0, 0, 0, 0.78); }
+    background-color: rgba(0, 0, 0, 0.68); }
   .shades-of-grey .mosaic-block:nth-of-type(3n) {
-    background-color: rgba(0, 0, 0, 0.76); }
+    background-color: rgba(0, 0, 0, 0.66); }
   .shades-of-grey .mosaic-block:nth-of-type(5n) {
-    background-color: rgba(0, 0, 0, 0.74); }
+    background-color: rgba(0, 0, 0, 0.64); }
 
 .colorful .mosaic-block {
   opacity: 0;
