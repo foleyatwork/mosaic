@@ -17,7 +17,7 @@ h1, h2 {
 .mosaic {
   height: 0;
   margin: 0 auto 150px;
-  padding-bottom: 100%;
+  padding-bottom: 56.25%;
   width: 100%; }
   .mosaic:after {
     clear: both;
@@ -27,6 +27,9 @@ h1, h2 {
     float: left;
     -webkit-transform: translateZ(0);
     transform: translateZ(0); }
+
+.shades-of-grey {
+  padding-bottom: 100%; }
 
 .shades-of-grey .mosaic-block {
   background-color: rgba(0, 0, 0, 0.8);
