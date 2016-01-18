@@ -25,55 +25,51 @@
       this._transitionMap = [];
 
       // Add the first item in each column.
-      for (let _idx = 0; _idx < cols; _idx++) {
-        ((idx) => {
-          const map = [];
-          map.push(idx);
-
-          let i = 0;
-
-          (function next(nextIdx) {
-            if (i >= 100) {
-              console.error(`
-                Recursive function called way too many times.
-                This means you're adding too many colums and rows or you are
-                delevoping and wrote a bug. Don't worry, it happens; that's why
-                this message is here.
-              `);
-              return;
-            }
-
-            if (nextIdx === 0) {
-              this._transitionMap.push(map);
-              return;
-            }
-
-            let tempNext;
-            if (nextIdx > cols) {
-              tempNext = (cols % (nextIdx + 1)) + (cols - 1);
-            } else {
-              tempNext = (nextIdx + 1) + (cols - 1);
-            }
-
-            if (tempNext % cols - 1 < nextIdx) {
-              map.push(tempNext - 1);
-              next.call(this, tempNext - 1);
-            } else {
-              this._transitionMap.push(map);
-            }
-
-            i++;
-          }).call(this, idx);
-        })(_idx);
+      for (let idx = 0; idx < cols; idx++) {
+				this._recursivelyAddIndexes(idx);
       }
 
       // Add the last item in each row (excluding the first).
-      for (let i = cols * 2 - 1; i < cols * rows; i = i + cols) {
-        this._transitionMap.push([i]);
+      for (let idx = cols * 2 - 1; idx < cols * rows; idx = idx + cols) {
+        this._recursivelyAddIndexes(idx);
       }
-
-      console.log(this._transitionMap);
     }
+
+		_recursivelyAddIndexes(idx) {
+			const cols = this.config.columns;
+      const rows = this.config.rows;
+			const map = [];
+			map.push(idx);
+
+			let i = 0;
+
+			(function next(nextIdx) {
+				if (i >= 100) {
+					console.error(`
+						Recursive function called way too many times.
+						This means you're adding too many colums and rows or you are
+						delevoping and wrote a bug. Don't worry, it happens; that's why
+						this message is here.
+					`);
+					return;
+				}
+
+				if (nextIdx === 0) {
+					this._transitionMap.push(map);
+					return;
+				}
+
+				const tempNext = nextIdx + cols - 1;
+				if (tempNext % cols < nextIdx % cols) {
+					map.push(tempNext);
+					next.call(this, tempNext);
+				} else {
+					this._transitionMap.push(map);
+				}
+
+				i++;
+			}).call(this, idx);
+		}
 
     _renderBlocks(done) {
       const max = this.config.columns * this.config.rows;
@@ -123,18 +119,26 @@
     }
 
     _triggerEntryTransition() {
-      for (let _idx = 0; _idx < this.config.columns; _idx++) {
-        ((idx) => {
-          setTimeout(() => {
-            let nextIdx;
-            this.dom.blocks[idx].className += " is-loaded";
-
-            if (idx < 2) {
-              return;
-            }
-          }, 100 * idx);
-        })(_idx);
-      }
+			this._transitionMap.forEach((group, idx) => {
+				setTimeout(() => {
+					group.forEach((elIdx) => {
+						this.dom.blocks[elIdx].className += " is-loaded";
+					});
+				}, 100 * idx);
+			});
+      // for (let _idx = 0; _idx < this._transitionMap; _idx++) {
+      //   ((idx) => {
+			//
+      //     setTimeout(() => {
+      //       let nextIdx;
+      //       this.dom.blocks[idx].className += " is-loaded";
+			//
+      //       if (idx < 2) {
+      //         return;
+      //       }
+      //     }, 100 * idx);
+      //   })(_idx);
+      // }
     }
   }
 

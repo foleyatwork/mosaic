@@ -33,69 +33,64 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "_buildTransitionMap",
         value: function _buildTransitionMap() {
-          var _this2 = this;
-
           var cols = this.config.columns;
           var rows = this.config.rows;
 
           this._transitionMap = [];
 
           // Add the first item in each column.
-          for (var _idx = 0; _idx < cols; _idx++) {
-            (function (idx) {
-              var map = [];
-              map.push(idx);
-
-              var i = 0;
-
-              (function next(nextIdx) {
-                if (i >= 100) {
-                  console.error("\n                Recursive function called way too many times.\n                This means you're adding too many colums and rows or you are\n                delevoping and wrote a bug. Don't worry, it happens; that's why\n                this message is here.\n              ");
-                  return;
-                }
-
-                if (nextIdx === 0) {
-                  this._transitionMap.push(map);
-                  return;
-                }
-
-                var tempNext = undefined;
-                if (nextIdx > cols) {
-                  tempNext = cols % (nextIdx + 1) + (cols - 1);
-                } else {
-                  tempNext = nextIdx + 1 + (cols - 1);
-                }
-
-                if (tempNext % cols - 1 < nextIdx) {
-                  map.push(tempNext - 1);
-                  next.call(this, tempNext - 1);
-                } else {
-                  this._transitionMap.push(map);
-                }
-
-                i++;
-              }).call(_this2, idx);
-            })(_idx);
+          for (var idx = 0; idx < cols; idx++) {
+            this._recursivelyAddIndexes(idx);
           }
 
           // Add the last item in each row (excluding the first).
-          for (var i = cols * 2 - 1; i < cols * rows; i = i + cols) {
-            this._transitionMap.push([i]);
+          for (var idx = cols * 2 - 1; idx < cols * rows; idx = idx + cols) {
+            this._recursivelyAddIndexes(idx);
           }
+        }
+      }, {
+        key: "_recursivelyAddIndexes",
+        value: function _recursivelyAddIndexes(idx) {
+          var cols = this.config.columns;
+          var rows = this.config.rows;
+          var map = [];
+          map.push(idx);
 
-          console.log(this._transitionMap);
+          var i = 0;
+
+          (function next(nextIdx) {
+            if (i >= 100) {
+              console.error("\n\t\t\t\t\t\tRecursive function called way too many times.\n\t\t\t\t\t\tThis means you're adding too many colums and rows or you are\n\t\t\t\t\t\tdelevoping and wrote a bug. Don't worry, it happens; that's why\n\t\t\t\t\t\tthis message is here.\n\t\t\t\t\t");
+              return;
+            }
+
+            if (nextIdx === 0) {
+              this._transitionMap.push(map);
+              return;
+            }
+
+            var tempNext = nextIdx + cols - 1;
+            if (tempNext % cols < nextIdx % cols) {
+              map.push(tempNext);
+              next.call(this, tempNext);
+            } else {
+              this._transitionMap.push(map);
+            }
+
+            i++;
+          }).call(this, idx);
         }
       }, {
         key: "_renderBlocks",
         value: function _renderBlocks(done) {
-          var _this3 = this;
+          var _this2 = this;
 
           var max = this.config.columns * this.config.rows;
 
           for (var _idx = 0; _idx < max; _idx++) {
             (function (idx) {
-              var block = _this3._createBlockEl(idx);
-              _this3.el.appendChild(block);
+              var block = _this2._createBlockEl(idx);
+              _this2.el.appendChild(block);
 
               if (idx + 1 === max) {
                 done();
@@ -114,17 +109,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "_setLayoutValues",
         value: function _setLayoutValues(done) {
-          var _this4 = this;
+          var _this3 = this;
 
           var height = this.el.clientHeight / this.config.rows;
           var width = this.el.clientWidth / this.config.columns;
 
           for (var _idx = 0; _idx < this.dom.blocks.length; _idx++) {
             (function (idx) {
-              _this4.dom.blocks[idx].style.height = height + "px";
-              _this4.dom.blocks[idx].style.width = width + "px";
+              _this3.dom.blocks[idx].style.height = height + "px";
+              _this3.dom.blocks[idx].style.width = width + "px";
 
-              if (idx === _this4.dom.blocks.length - 1) {
+              if (idx === _this3.dom.blocks.length - 1) {
                 done();
               }
             })(_idx);
@@ -143,20 +138,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "_triggerEntryTransition",
         value: function _triggerEntryTransition() {
-          var _this5 = this;
+          var _this4 = this;
 
-          for (var _idx = 0; _idx < this.config.columns; _idx++) {
-            (function (idx) {
-              setTimeout(function () {
-                var nextIdx = undefined;
-                _this5.dom.blocks[idx].className += " is-loaded";
-
-                if (idx < 2) {
-                  return;
-                }
-              }, 100 * idx);
-            })(_idx);
-          }
+          this._transitionMap.forEach(function (group, idx) {
+            setTimeout(function () {
+              group.forEach(function (elIdx) {
+                _this4.dom.blocks[elIdx].className += " is-loaded";
+              });
+            }, 100 * idx);
+          });
+          // for (let _idx = 0; _idx < this._transitionMap; _idx++) {
+          //   ((idx) => {
+          //
+          //     setTimeout(() => {
+          //       let nextIdx;
+          //       this.dom.blocks[idx].className += " is-loaded";
+          //
+          //       if (idx < 2) {
+          //         return;
+          //       }
+          //     }, 100 * idx);
+          //   })(_idx);
+          // }
         }
       }]);
 
