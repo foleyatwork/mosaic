@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: rgba(0, 0, 0, 0.78);
+  font-family: georgia;
+  font-style: italic;
+  margin: 150px 0;
+  text-align: center;
+}
+
+.mosaic {
+  height: 1200px;
+  margin: 0 auto 150px;
+  width: 900px;
+
+  &:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+
+  &-block {
+    float: left;
+  }
+}
+
+.shades-of-grey .mosaic-block {
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 750ms ease;
+  transition-delay: 100ms;
+
+  &.is-loaded {
+    opacity: 1;
+  }
+
+  &:nth-of-type(2n) {
+    background-color: rgba(0, 0, 0, 0.78);
+  }
+
+  &:nth-of-type(3n) {
+    background-color: rgba(0, 0, 0, 0.76);
+  }
+
+  &:nth-of-type(5n) {
+    background-color: rgba(0, 0, 0, 0.74);
+  }
+}
+
+.colorful .mosaic-block {
+  background-color: cornflowerblue;
+}
