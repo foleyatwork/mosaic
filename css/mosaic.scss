@@ -30,8 +30,7 @@ h1 {
 .shades-of-grey .mosaic-block {
   background-color: rgba(0, 0, 0, 0.8);
   opacity: 0;
-  transition: opacity 750ms ease;
-  transition-delay: 100ms;
+  transition: opacity 700ms ease, transform 1000ms ease;
 
   &.is-loaded {
     opacity: 1;
