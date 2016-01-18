@@ -143,7 +143,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this._transitionMap.forEach(function (group, idx) {
             setTimeout(function () {
               group.forEach(function (elIdx) {
-                if (_this4.dom.blocks[elIdx] && _this4.dom.blocks[elIdx].indexOf("is-loaded") === -1) {
+                if (_this4.dom.blocks[elIdx] && _this4.dom.blocks[elIdx].className.indexOf("is-loaded") === -1) {
                   _this4.dom.blocks[elIdx].className += " is-loaded";
                 }
               });

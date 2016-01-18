@@ -122,7 +122,10 @@
 			this._transitionMap.forEach((group, idx) => {
 				setTimeout(() => {
 					group.forEach((elIdx) => {
-						if (this.dom.blocks[elIdx] && this.dom.blocks[elIdx].indexOf("is-loaded") === -1) {
+						if (
+							this.dom.blocks[elIdx] &&
+							this.dom.blocks[elIdx].className.indexOf("is-loaded") === -1
+						) {
 							this.dom.blocks[elIdx].className += " is-loaded";
 						}
 					});
