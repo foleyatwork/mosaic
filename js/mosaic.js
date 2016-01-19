@@ -41,7 +41,7 @@
 
 		_recursivelyAddIndexes(idx) {
 			const cols = this.config.columns;
-      const rows = this.config.rows;
+			const rows = this.config.rows;
 			const map = [];
 			map.push(idx);
 
@@ -114,15 +114,6 @@
           }
         })(_idx);
       }
-    }
-
-    _getNextBlockIndex(pos) {
-      if (pos === 0) {
-         return 1;
-      }
-
-      const cols = this.config.columns;
-      return (cols - pos) + (pos + 1);
     }
 
     _triggerEntryTransition() {
